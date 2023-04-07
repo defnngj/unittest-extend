@@ -17,19 +17,33 @@
 ```
 
 
-
 ## 用法
 
 `test_sample.py` 用例：
 
 ```python
 import xtest
+from selenium import webdriver
 
 
 class MyTest(xtest.TestCase):
 
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.name = self.get_name
+
+    def tearDown(self):
+        self.driver.quit()
+
     def test_case(self):
-        self.say_hello(self.get_name, 3)
+        self.driver.get("https://www.baidu.com/")
+        search_input = self.driver.find_element("id", "kw")
+        search_input.send_keys(self.name)
+        search_input.submit()
+        self.sleep(2)
+        result_title = self.driver.find_elements("css selector", "div > h3.c-title > a")
+        for title in result_title:
+            self.assert_in_text(self.name, title.text)
 
 
 if __name__ == '__main__':
@@ -43,12 +57,9 @@ if __name__ == '__main__':
 ```shell
 > pytest test_sample.py
 
-Hello Andy
-Hello Andy
-Hello Andy
 .
 ----------------------------------------------------------------------
-Ran 1 test in 0.001s
+Ran 1 test in 10.281s
 
 OK
 ```
