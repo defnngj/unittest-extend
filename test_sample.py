@@ -1,3 +1,7 @@
+"""
+test_sample.py
+xtest 使用
+"""
 import xtest
 from selenium import webdriver
 
@@ -19,7 +23,7 @@ class MyTest(xtest.TestCase):
         self.sleep(2)
         result_title = self.driver.find_elements("css selector", "div > h3.c-title > a")
         for title in result_title:
-            print("tt", title.text)
+            print(f"title: {title.text}")
             self.assert_in_text(self.name, title.text)
 
 

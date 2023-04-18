@@ -7,7 +7,7 @@
 ```shell script
 > git clone https://github.com/defnngj/unittest-extend
 > cd unittest-extend
-> python setup.py install
+> pip install .
 ```
 
 * pip在线安装
