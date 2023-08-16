@@ -14,7 +14,7 @@ with open('xtest/__init__.py', 'rb') as f:
 setuptools.setup(
     name="xtest",
     version=version,
-    author="bugmaster",
+    author="fnngj",
     author_email="fnngj@126.com",
     description="unittest extend",
     long_description=long_description,
